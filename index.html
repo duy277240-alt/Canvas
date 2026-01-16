@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Trình Soạn Thảo Hình Học Toàn Diện</title>
+    <title>Canvas Hình Học Pro - Full Features</title>
     <script type="text/x-mathjax-config">
       MathJax.Hub.Config({
         tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']], processEscapes: true},
@@ -12,39 +12,47 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
     
     <style>
-        :root { --blue: #2980b9; --green: #27ae60; --dark: #2c3e50; --orange: #f39c12; }
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; display: flex; flex-direction: column; height: 100vh; background: #f0f2f5; }
-        header { background: var(--dark); color: white; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; }
+        :root { --blue: #2980b9; --green: #27ae60; --dark: #2c3e50; --orange: #f39c12; --red: #e74c3c; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; display: flex; flex-direction: column; height: 100vh; background: #eaeff2; }
+        header { background: var(--dark); color: white; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
         
-        /* Toolbar Styles */
-        .toolbar { background: #fff; padding: 8px; border-bottom: 1px solid #ccc; display: flex; gap: 5px; flex-wrap: wrap; align-items: center; }
+        /* Toolbar */
+        .toolbar { background: #fff; padding: 10px; border-bottom: 1px solid #ccc; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
         .group { display: flex; gap: 3px; padding-right: 8px; border-right: 1px solid #ddd; margin-right: 5px; }
-        button { padding: 6px 10px; cursor: pointer; border: 1px solid #ddd; background: #fff; border-radius: 4px; font-size: 13px; transition: 0.2s; }
-        button:hover { background: #f1f2f6; border-color: var(--blue); }
-        select { padding: 5px; border-radius: 4px; border: 1px solid #ddd; cursor: pointer; }
-
-        /* Main Layout */
+        
+        /* Layout chính */
         .main { display: flex; flex: 1; overflow: hidden; padding: 10px; gap: 10px; }
-        .pane { display: flex; flex-direction: column; flex: 1; background: white; border-radius: 4px; border: 1px solid #ddd; }
-        .label { background: #f8f9fa; padding: 5px 10px; font-size: 11px; font-weight: bold; color: #666; border-bottom: 1px solid #eee; }
-        textarea { flex: 1; padding: 15px; font-size: 15px; border: none; resize: none; font-family: 'Consolas', monospace; outline: none; line-height: 1.5; }
-        #preview { flex: 1; padding: 30px; overflow-y: auto; font-size: 18px; line-height: 1.7; font-family: 'Times New Roman', serif; }
+        .pane { display: flex; flex-direction: column; flex: 1; background: white; border-radius: 8px; overflow: hidden; border: 1px solid #dcdde1; }
+        .label { background: #f5f6fa; padding: 8px 15px; font-size: 11px; font-weight: bold; color: #7f8c8d; border-bottom: 1px solid #eee; }
+        
+        textarea { flex: 1; padding: 20px; font-size: 16px; border: none; resize: none; font-family: 'Consolas', monospace; outline: none; line-height: 1.6; }
+        #preview { flex: 1; padding: 40px; overflow-y: auto; font-size: 18px; line-height: 1.8; font-family: 'Times New Roman', serif; }
+        
+        /* Sidebar Phản hồi */
+        .feedback-section { width: 350px; background: white; border-radius: 8px; border: 1px solid #dcdde1; display: flex; flex-direction: column; padding: 15px; overflow-y: auto; }
 
-        /* Print Style */
-        .btn-print { background: var(--green); color: white; border: none; font-weight: bold; padding: 8px 20px; }
+        /* Buttons */
+        button { padding: 8px 12px; cursor: pointer; border: 1px solid #dcdde1; background: white; border-radius: 5px; font-weight: 500; transition: 0.2s; }
+        button:hover { background: #f1f2f6; border-color: var(--blue); color: var(--blue); }
+        select { padding: 7px; border-radius: 5px; border: 1px solid #ddd; }
+        .btn-print { background: var(--green); color: white; border: none; padding: 10px 25px; font-size: 14px; }
+        .btn-clean { background: var(--orange); color: white; border: none; }
+        .btn-clean:hover { background: #e67e22; color: white; }
+
+        /* Print Settings */
         @media print {
-            header, .toolbar, .label, textarea { display: none !important; }
+            header, .toolbar, .feedback-section, .label, textarea { display: none !important; }
             .main { display: block; padding: 0; }
             .pane { border: none; }
-            #preview { padding: 0; overflow: visible; width: 100%; }
+            #preview { border: none; padding: 0; width: 100%; overflow: visible; }
         }
     </style>
 </head>
 <body>
 
 <header>
-    <div style="font-weight: bold;">CÔNG CỤ SOẠN THẢO TOÁN HỌC TỔNG HỢP</div>
-    <button class="btn-print" onclick="window.print()">🖨️ XUẤT FILE PDF / IN</button>
+    <div style="font-size: 1.2rem; font-weight: bold;">CÔNG CỤ SOẠN THẢO TOÁN HÌNH HỌC</div>
+    <button class="btn-print" onclick="printDocument()">🖨️ XUẤT FILE PDF / IN BÀI</button>
 </header>
 
 <div class="toolbar">
@@ -55,17 +63,12 @@
             <option value="H2">Tiêu đề 2</option>
             <option value="H3">Tiêu đề 3</option>
         </select>
-        <button onclick="wrapText('**', '**')" title="Chữ đậm"><b>B</b></button>
-        <button onclick="wrapText('*', '*')" title="Chữ nghiêng"><i>I</i></button>
+        <button onclick="wrapText('**', '**')"><b>B</b></button>
+        <button onclick="wrapText('*', '*')" style="font-style: italic;">I</button>
     </div>
 
     <div class="group">
-        <button onclick="insertAtStart('* ')">• Danh sách</button>
-        <button onclick="insertAtStart('1. ')">1. Số thứ tự</button>
-    </div>
-
-    <div class="group">
-        <button onclick="add('\\triangle ')">Δ</button>
+        <button onclick="add('\\triangle ')">Δ Tam giác</button>
         <button onclick="add('\\widehat{...}')">\( \widehat{A} \)</button>
         <button onclick="add('^\\circ')">\( ^\circ \)</button>
         <button onclick="add('\\perp ')">⊥</button>
@@ -74,46 +77,62 @@
         <button onclick="add('\\Rightarrow ')">⇒</button>
     </div>
 
-    <button style="background: var(--orange); color: white;" onclick="cleanEmptyLines()">🧹 Xoá dòng trống</button>
-    <button onclick="update()">🔄 Làm mới</button>
+    <button class="btn-clean" onclick="cleanEmptyLines()">🧹 Dọn dòng trống</button>
+    <button onclick="update()">⚡ Render Lại</button>
+    <button onclick="localStorage.clear(); location.reload();" style="color: var(--red);">Xóa hết</button>
 </div>
 
 <div class="main">
     <div class="pane">
-        <div class="label">NỘI DUNG MÃ</div>
-        <textarea id="editor" oninput="update()" placeholder="Nhập nội dung... Dùng **đậm** và *nghiêng*"></textarea>
+        <div class="label">MÃ SOẠN THẢO (Hỗ trợ Markdown & LaTeX)</div>
+        <textarea id="editor" placeholder="Nhập nội dung bài toán tại đây..." oninput="update()"></textarea>
     </div>
+    
     <div class="pane">
-        <div class="label">HIỂN THỊ TRỰC QUAN</div>
+        <div class="label">BẢN IN XEM TRƯỚC</div>
         <div id="preview"></div>
     </div>
+
+    <div class="feedback-section">
+        <div style="font-weight: bold; color: var(--dark); border-bottom: 2px solid #ddd; padding-bottom: 10px; margin-bottom: 15px;">
+            BÌNH LUẬN & GÓP Ý
+        </div>
+        
+        <script src="https://utteranc.es/client.js"
+            repo="duy277240-alt/Canvas"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+        </script>
+    </div>
 </div>
+
+<iframe id="printFrame" style="display:none;"></iframe>
 
 <script>
     const editor = document.getElementById('editor');
     const preview = document.getElementById('preview');
 
+    // Tự động tải dữ liệu cũ
+    if(localStorage.getItem('savedMathDoc')) {
+        editor.value = localStorage.getItem('savedMathDoc');
+    }
+
     function update() {
+        localStorage.setItem('savedMathDoc', editor.value);
         let content = editor.value;
 
-        // 1. Xử lý Tiêu đề (Markdown style)
+        // Xử lý Markdown đơn giản
         content = content.replace(/^# (.*$)/gim, '<h1>$1</h1>');
         content = content.replace(/^## (.*$)/gim, '<h2>$1</h2>');
         content = content.replace(/^### (.*$)/gim, '<h3>$1</h3>');
-
-        // 2. Xử lý Chữ đậm/nghiêng
         content = content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
         content = content.replace(/\*(.*?)\*/g, '<em>$1</em>');
-
-        // 3. Xử lý Danh sách
-        content = content.replace(/^\* (.*$)/gim, '<ul><li>$1</li></ul>');
-        content = content.replace(/^\d+\. (.*$)/gim, '<ol><li>$1</li></ol>');
-        // Gộp các thẻ ul/ol liền nhau
-        content = content.replace(/<\/ul>\s*<ul>/g, '').replace(/<\/ol>\s*<ol>/g, '');
-
-        // 4. Xuống dòng
+        
+        // Xuống dòng
         content = content.replace(/\n/g, '<br>');
-
+        
         preview.innerHTML = content;
         
         if (window.MathJax) {
@@ -123,31 +142,24 @@
 
     function insertHeading(type) {
         const h = type === 'H1' ? '# ' : type === 'H2' ? '## ' : '### ';
-        insertAtStart(h);
+        const start = editor.selectionStart;
+        editor.value = editor.value.substring(0, start) + h + editor.value.substring(start);
+        update();
+        editor.focus();
     }
 
     function wrapText(before, after) {
-        const start = editor.selectionStart;
-        const end = editor.selectionEnd;
-        const selected = editor.value.substring(start, end);
-        const text = editor.value;
-        editor.value = text.substring(0, start) + before + selected + after + text.substring(end);
-        update();
-    }
-
-    function insertAtStart(mark) {
-        const start = editor.selectionStart;
-        const text = editor.value;
-        editor.value = text.substring(0, start) + mark + text.substring(start);
+        const s = editor.selectionStart, e = editor.selectionEnd;
+        const sel = editor.value.substring(s, e);
+        editor.value = editor.value.substring(0, s) + before + sel + after + editor.value.substring(e);
         update();
         editor.focus();
     }
 
     function add(val) {
         const start = editor.selectionStart;
-        const end = editor.selectionEnd;
         const insert = `$${val}$`;
-        editor.value = editor.value.substring(0, start) + insert + editor.value.substring(end);
+        editor.value = editor.value.substring(0, start) + insert + editor.value.substring(editor.selectionEnd);
         if(val.includes('...')) {
             editor.selectionStart = start + insert.indexOf('...');
             editor.selectionEnd = editor.selectionStart + 3;
@@ -161,9 +173,30 @@
         update();
     }
 
-    // Tự động lưu và tải lại
-    editor.value = localStorage.getItem('geoDoc') || "";
-    editor.onkeyup = () => localStorage.setItem('geoDoc', editor.value);
+    function printDocument() {
+        const printFrame = document.getElementById('printFrame');
+        const doc = printFrame.contentWindow.document;
+        doc.open();
+        doc.write(`
+            <html>
+                <head>
+                    <title>Bản in tài liệu</title>
+                    <style>
+                        body { font-family: 'Times New Roman', serif; padding: 40px; line-height: 1.6; font-size: 14pt; }
+                        h1 { font-size: 24pt; } h2 { font-size: 20pt; } h3 { font-size: 16pt; }
+                        .mjx-chtml { font-size: 115% !important; }
+                    </style>
+                </head>
+                <body>${preview.innerHTML}</body>
+            </html>
+        `);
+        doc.close();
+        setTimeout(() => {
+            printFrame.contentWindow.focus();
+            printFrame.contentWindow.print();
+        }, 600);
+    }
+
     window.onload = update;
 </script>
 
