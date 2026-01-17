@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="DÁN_MÃ_XÁC_MINH_CỦA_BẠN_VÀO_ĐÂY" />
-    <meta name="description" content="Canvas Toán Học - Trình soạn thảo toán học đa năng: Hỗn số, Căn bậc n, Tích phân, Hình học. Hỗ trợ đầy đủ từ lớp 1 đến lớp 12.">
-    <title>Canvas Toán Học Pro | Đầy Đủ Ký Hiệu Lớp 1-12</title>
+    <meta name="description" content="Canvas Toán Học - Trình soạn thảo toán học đầy đủ: Tập hợp số N, Z, Q, R, Phân số, Hỗn số, Hình học và Giải tích.">
+    <title>Canvas Toán Học Pro | Full Mathematical Symbols</title>
 
     <script type="text/x-mathjax-config">
       MathJax.Hub.Config({
@@ -17,121 +17,87 @@
     
     <style>
         :root { --primary: #0f172a; --secondary: #334155; --accent: #38bdf8; --success: #22c55e; --bg: #f1f5f9; }
-        body { font-family: 'Inter', 'Segoe UI', sans-serif; margin: 0; display: flex; flex-direction: column; height: 100vh; background: var(--bg); color: #1e293b; }
-        
-        header { background: var(--primary); color: white; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
-        .logo-area { display: flex; align-items: center; gap: 10px; }
-        .version-tag { font-size: 10px; background: var(--accent); color: var(--primary); padding: 2px 6px; border-radius: 4px; font-weight: bold; }
-
-        /* Hệ thống Toolbar mới */
-        .toolbar { background: white; padding: 12px; border-bottom: 1px solid #e2e8f0; display: flex; flex-direction: column; gap: 10px; overflow-x: auto; }
-        .tool-group { display: flex; gap: 8px; align-items: center; white-space: nowrap; padding-bottom: 5px; border-bottom: 1px dashed #f1f5f9; }
-        .tool-group:last-child { border-bottom: none; }
-        .group-name { font-size: 11px; font-weight: 700; color: #64748b; min-width: 100px; text-transform: uppercase; border-right: 2px solid #e2e8f0; margin-right: 5px; }
-        
-        button { padding: 6px 12px; cursor: pointer; border: 1px solid #e2e8f0; background: #fff; border-radius: 6px; font-size: 13px; font-weight: 500; transition: all 0.2s; }
-        button:hover { border-color: var(--accent); background: #f0f9ff; color: var(--primary); }
-        .btn-math { font-family: 'Times New Roman', serif; font-style: italic; font-size: 15px; }
-        .btn-hot { background: #fff7ed; border-color: #fdba74; }
-
-        .main { display: flex; flex: 1; overflow: hidden; padding: 12px; gap: 12px; }
-        .pane { display: flex; flex-direction: column; flex: 1; background: white; border-radius: 12px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
-        .label { background: #f8fafc; padding: 10px 16px; font-size: 12px; font-weight: 700; color: #475569; border-bottom: 1px solid #e2e8f0; border-radius: 12px 12px 0 0; display: flex; justify-content: space-between; }
-        
-        textarea { flex: 1; padding: 20px; font-size: 16px; border: none; resize: none; font-family: 'Fira Code', 'Consolas', monospace; outline: none; line-height: 1.6; color: #334155; }
-        #preview { flex: 1; padding: 40px; overflow-y: auto; font-size: 20px; line-height: 1.8; font-family: 'Times New Roman', serif; background: white; color: black; }
-        
-        .feedback-pane { width: 320px; }
-
-        @media print {
-            header, .toolbar, .feedback-pane, .label, textarea { display: none !important; }
-            .main { display: block; padding: 0; }
-            .pane { border: none; box-shadow: none; }
-            #preview { padding: 0; width: 100%; }
-        }
+        body { font-family: 'Inter', sans-serif; margin: 0; display: flex; flex-direction: column; height: 100vh; background: var(--bg); color: #1e293b; }
+        header { background: var(--primary); color: white; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; }
+        .toolbar { background: white; padding: 10px; border-bottom: 1px solid #e2e8f0; display: flex; flex-direction: column; gap: 8px; overflow-x: auto; }
+        .tool-group { display: flex; gap: 6px; align-items: center; white-space: nowrap; padding-bottom: 4px; border-bottom: 1px solid #f8fafc; }
+        .group-name { font-size: 10px; font-weight: 800; color: #94a3b8; min-width: 90px; text-transform: uppercase; }
+        button { padding: 5px 10px; cursor: pointer; border: 1px solid #e2e8f0; background: #fff; border-radius: 5px; font-size: 13px; transition: 0.2s; }
+        button:hover { border-color: var(--accent); background: #f0f9ff; }
+        .btn-set { font-weight: bold; color: #0369a1; background: #f0f9ff; }
+        .main { display: flex; flex: 1; overflow: hidden; padding: 10px; gap: 10px; }
+        .pane { display: flex; flex-direction: column; flex: 1; background: white; border-radius: 10px; border: 1px solid #e2e8f0; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .label { background: #f8fafc; padding: 8px 15px; font-size: 11px; font-weight: 700; color: #64748b; border-bottom: 1px solid #e2e8f0; border-radius: 10px 10px 0 0; }
+        textarea { flex: 1; padding: 15px; font-size: 16px; border: none; resize: none; font-family: 'Consolas', monospace; outline: none; }
+        #preview { flex: 1; padding: 30px; overflow-y: auto; font-size: 19px; line-height: 1.8; font-family: 'Times New Roman', serif; background: white; }
+        @media print { header, .toolbar, .feedback-pane, .label, textarea { display: none !important; } .main { display: block; } #preview { width: 100%; } }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="logo-area">
-        <span style="font-size: 1.3rem; font-weight: 900;">📐 CANVAS MATH</span>
-        <span class="version-tag">V3.0 PRO</span>
-    </div>
+    <div style="font-weight: 900;">📐 CANVAS MATH PRO v3.1</div>
     <div style="display: flex; gap: 10px;">
-        <button onclick="copySite()" style="background:#334155; color:white; border:none;">🔗 Chia sẻ</button>
-        <button onclick="window.print()" style="background:var(--success); color:white; border:none; padding: 8px 20px;">🖨️ XUẤT FILE IN (PDF)</button>
+        <button onclick="copySite()" style="background:#334155; color:white; border:none;">🔗 Copy Link</button>
+        <button onclick="window.print()" style="background:var(--success); color:white; border:none;">🖨️ XUẤT PDF</button>
     </div>
 </header>
 
 <div class="toolbar">
     <div class="tool-group">
-        <div class="group-name">Cơ bản & Hỗn số</div>
-        <button class="btn-hot" onclick="add('a\\frac{b}{c}')">$a\frac{b}{c}$ Hỗn số</button>
-        <button class="btn-hot" onclick="add('\\frac{a}{b}')">$\frac{a}{b}$ Phân số</button>
-        <button onclick="add('\\times ')">$\times$ Nhân</button>
-        <button onclick="add('\\div ')">$\div$ Chia</button>
-        <button onclick="add('\\pm ')">$\pm$ Cộng trừ</button>
+        <div class="group-name">Tập hợp số</div>
+        <button class="btn-set" onclick="add('\\mathbb{N}')">$\mathbb{N}$</button>
+        <button class="btn-set" onclick="add('\\mathbb{Z}')">$\mathbb{Z}$</button>
+        <button class="btn-set" onclick="add('\\mathbb{Q}')">$\mathbb{Q}$</button>
+        <button class="btn-set" onclick="add('\\mathbb{R}')">$\mathbb{R}$</button>
+        <button class="btn-set" onclick="add('\\mathbb{C}')">$\mathbb{C}$</button>
+        <button onclick="add('\\in ')">$\in$</button>
+        <button onclick="add('\\notin ')">$\notin$</button>
+        <button onclick="add('\\subset ')">$\subset$</button>
+        <button onclick="add('\\cup ')">$\cup$ Hợp</button>
+        <button onclick="add('\\cap ')">$\cap$ Giao</button>
+        <button onclick="add('\\setminus ')">$\setminus$ Hiệu</button>
+        <button onclick="add('\\emptyset ')">$\emptyset$</button>
     </div>
     
     <div class="tool-group">
-        <div class="group-name">Lớp 6 - 9</div>
-        <button onclick="add('a^n')">$a^n$ Lũy thừa</button>
-        <button onclick="add('\\sqrt{x}')">$\sqrt{x}$ Căn bậc 2</button>
-        <button onclick="add('\\sqrt[3]{x}')">$\sqrt[3]{x}$ Căn bậc 3</button>
-        <button onclick="add('\\triangle ')">$\triangle$ Tam giác</button>
-        <button onclick="add('\\perp ')">$\perp$ Vuông góc</button>
-        <button onclick="add('\\parallel ')">$\parallel$ Song song</button>
-        <button onclick="add('\\widehat{ABC}')">$\widehat{A}$ Góc</button>
-        <button onclick="add('^\\circ ')">$^\circ$ Độ</button>
+        <div class="group-name">Đại số</div>
+        <button onclick="add('a\\frac{b}{c}')">Hỗn số</button>
+        <button onclick="add('\\frac{a}{b}')">Phân số</button>
+        <button onclick="add('a^n')">$a^n$</button>
+        <button onclick="add('\\sqrt{x}')">$\sqrt{x}$</button>
+        <button onclick="add('\\sqrt[n]{x}')">$\sqrt[n]{x}$</button>
+        <button onclick="add('\\log_a b')">$\log$</button>
+        <button onclick="add('\\sum')">$\sum$</button>
+        <button onclick="add('\\int')">$\int$</button>
     </div>
 
     <div class="tool-group">
-        <div class="group-name">Lớp 10 - 12</div>
-        <button class="btn-math" onclick="add('\\int_{a}^{b} f(x)dx')">$\int$ Tích phân</button>
-        <button class="btn-math" onclick="add('\\lim_{x \\to x_0}')">$\lim$ Giới hạn</button>
-        <button class="btn-math" onclick="add('\\sum_{i=1}^{n}')">$\sum$ Tổng</button>
-        <button class="btn-math" onclick="add('\\vec{a}')">$\vec{a}$ Vectơ</button>
-        <button onclick="add('\\log_a b')">$\log$ Logarit</button>
-        <button onclick="add('\\sin x')">$\sin$</button>
-        <button onclick="add('\\cos x')">$\cos$</button>
-        <button onclick="add('\\infty ')">$\infty$ Vô cực</button>
-    </div>
-
-    <div class="tool-group">
-        <div class="group-name">Logic & So sánh</div>
-        <button onclick="add('\\in ')">$\in$ Thuộc</button>
-        <button onclick="add('\\subset ')">$\subset$ Tập con</button>
-        <button onclick="add('\\forall ')">$\forall$ Với mọi</button>
-        <button onclick="add('\\exists ')">$\exists$ Tồn tại</button>
-        <button onclick="add('\\neq ')">$\neq$ Khác</button>
-        <button onclick="add('\\approx ')">$\approx$ Xấp xỉ</button>
-        <button onclick="add('\\Rightarrow ')">$\Rightarrow$ Suy ra</button>
-        <button onclick="add('\\Leftrightarrow ')">$\Leftrightarrow$ Tương đương</button>
+        <div class="group-name">Hình & Logic</div>
+        <button onclick="add('\\triangle ')">$\triangle$</button>
+        <button onclick="add('\\perp ')">$\perp$</button>
+        <button onclick="add('\\parallel ')">$\parallel$</button>
+        <button onclick="add('\\widehat{A}')">Góc</button>
+        <button onclick="add('\\vec{a}')">Vectơ</button>
+        <button onclick="add('\\forall ')">$\forall$</button>
+        <button onclick="add('\\exists ')">$\exists$</button>
+        <button onclick="add('\\Rightarrow ')">$\Rightarrow$</button>
     </div>
 </div>
 
 <div class="main">
     <div class="pane">
-        <div class="label">KHU VỰC NHẬP LIỆU <span>Markdown + LaTeX</span></div>
-        <textarea id="editor" oninput="update()" placeholder="Ví dụ: Tính hỗn số $2\frac{1}{2} + 3\frac{3}{4}$..."></textarea>
+        <div class="label">SOẠN THẢO</div>
+        <textarea id="editor" oninput="update()" placeholder="Ví dụ: Cho $x \in \mathbb{R}$ và $A \cap B = \emptyset$"></textarea>
     </div>
-    
     <div class="pane">
-        <div class="label">XEM TRƯỚC TRANG IN <span>A4 Standard</span></div>
+        <div class="label">XEM TRƯỚC</div>
         <div id="preview"></div>
     </div>
-
-    <div class="pane feedback-pane">
-        <div class="label">CỘNG ĐỒNG GÓP Ý</div>
-        <div style="padding: 10px; flex: 1; overflow-y: auto;">
-            <script src="https://utteranc.es/client.js"
-                repo="duy277240-alt/Canvas"
-                issue-term="pathname"
-                theme="github-light"
-                crossorigin="anonymous"
-                async>
-            </script>
+    <div class="pane" style="width:280px;">
+        <div class="label">GÓP Ý</div>
+        <div style="padding:10px; overflow-y:auto; flex:1;">
+            <script src="https://utteranc.es/client.js" repo="duy277240-alt/Canvas" issue-term="pathname" theme="github-light" crossorigin="anonymous" async></script>
         </div>
     </div>
 </div>
@@ -140,50 +106,31 @@
     const editor = document.getElementById('editor');
     const preview = document.getElementById('preview');
 
-    // Lưu trữ dữ liệu thông minh
-    editor.value = localStorage.getItem('canvas_v3_content') || "";
+    editor.value = localStorage.getItem('canvas_final') || "";
 
     function update() {
-        localStorage.setItem('canvas_v3_content', editor.value);
+        localStorage.setItem('canvas_final', editor.value);
         let content = editor.value
             .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-            .replace(/\*(.*?)\*/g, '<em>$1</em>')
             .replace(/\n/g, '<br>');
-        
         preview.innerHTML = content;
-        if (window.MathJax) {
-            MathJax.Hub.Queue(["Typeset", MathJax.Hub, preview]);
-        }
+        if (window.MathJax) MathJax.Hub.Queue(["Typeset", MathJax.Hub, preview]);
     }
 
     function add(code) {
-        const start = editor.selectionStart;
-        const end = editor.selectionEnd;
-        const text = editor.value;
-        const before = text.substring(0, start);
-        const after = text.substring(end);
-        
-        // Bọc trong dấu $ nếu là ký hiệu LaTeX
-        const markup = `$${code}$`;
-        
-        editor.value = before + markup + after;
+        const s = editor.selectionStart;
+        const insert = (code.includes('\\') || code.includes('^')) ? `$${code}$` : code;
+        editor.value = editor.value.substring(0, s) + insert + editor.value.substring(editor.selectionEnd);
         update();
         editor.focus();
-        
-        // Đặt con trỏ vào giữa các ký hiệu trống (ví dụ giữa { })
-        if (code.includes('{')) {
-            const pos = before.length + markup.indexOf('{') + 1;
-            editor.setSelectionRange(pos, pos);
-        }
     }
 
     function copySite() {
         navigator.clipboard.writeText(window.location.href);
-        alert("Đã copy link trang web! Hãy chia sẻ cho mọi người nhé.");
+        alert("Đã copy link trang web!");
     }
 
     window.onload = update;
 </script>
-
 </body>
 </html>
